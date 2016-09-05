@@ -62,9 +62,9 @@ module Swagger
 
         def generate_doc(api_version, settings, config)
           root = { 
-            "apiVersion" => api_version, 
-            "swaggerVersion" => "1.2", 
-            "basePath" => settings[:base_path], 
+            "apiVersion" => api_version,
+            "swaggerVersion" => "1.2",
+            "basePath" => settings[:base_path],
             :apis => [],
             :authorizations => settings[:authorizations]
           }
@@ -78,7 +78,7 @@ module Swagger
               resources << generate_resource(ret[:path], ret[:apis], ret[:models], settings, root, config, ret[:klass].swagger_config)
               debased_path = get_debased_path(ret[:path], settings[:controller_base_path])
               resource_api = {
-                path: "/#{Config.transform_path(trim_leading_slash(debased_path), api_version)}.{format}",
+                path: "#{Config.transform_path(trim_leading_slash(debased_path), api_version)}.json",
                 description: ret[:klass].swagger_config[:description]
               }
               root[:apis] << resource_api
