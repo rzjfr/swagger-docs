@@ -101,11 +101,15 @@ module Swagger
         @description = description
       end
 
-      def property(name, type, required, description = nil, hash={})
+      def property(name, type, required, description = nil, attribs=[])
+
         properties[name] = {
           type: type,
-          example: description,
-        }.merge!(hash)
+          example: description
+        }
+
+        properties[name].merge!(enum: attribs) unless attribs.empty?
+
         self.required << name if required == :required
       end
 
