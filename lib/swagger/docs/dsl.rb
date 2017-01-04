@@ -104,7 +104,7 @@ module Swagger
       def property(name, type, required, description = nil, hash={})
         properties[name] = {
           type: type,
-          description: description,
+          example: description,
         }.merge!(hash)
         self.required << name if required == :required
       end
