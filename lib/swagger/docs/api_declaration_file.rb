@@ -73,11 +73,7 @@ module Swagger
       def normalize_model_properties(models)
         Hash[
           models.map do |k, v|
-            if camelize_model_properties
-              [k.to_s, camelize_keys_deep(v)]
-            else
-              [k.to_s, stringify_keys_deep(v)]
-            end
+            [k.to_s, stringify_keys_deep(v)]
           end]
       end
 
